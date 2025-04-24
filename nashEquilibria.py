@@ -1,4 +1,6 @@
 from __future__ import annotations
+from ast import main
+from token import OP
 import sympy as sp
 
 
@@ -56,3 +58,13 @@ class MarketData:
 def geqZero(expression):
     return sp.solve(sp.GreaterThan(expression,0))
 
+def optimalEquation(utilityFunc : sp.Expr, strategy: sp.Symbol)->sp.Eq:
+    marginalUtility=sp.diff(utilityFunc, strategy)
+    return sp.Eq(marginalUtility,0)
+
+if __name__ == "__main__":
+    st=sp.Symbol('st')
+    c=sp.Symbol('c')
+    utilityFunc=(st-c)**2
+    optSt=optimalStrategy(utilityFunc,st)
+    print(optSt)

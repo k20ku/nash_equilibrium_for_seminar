@@ -1,10 +1,9 @@
 from __future__ import annotations
-from ast import main
-from token import OP
 import sympy as sp
 
 
 # 利潤の計算式を保持するクラス
+# 順次newConditionsに置き換えていく予定
 class Profit:
     profit = {'off':lambda P,Q,c: Q*(P-2*c),
                 'hy':lambda P,Q,c: Q*(P-c),
@@ -49,13 +48,7 @@ class MarketData:
         eqPrices = sp.solve([eq_1,eq_2],[pa,pb])
         return eqPrices
 
-
-
-#    @staticmethod
-#    def solveEqLogicWithStronglyConvexUtilityFunctions(cls,utilityFuncs,)
-
-
-def geqZero(expression):
+def geqZero(expression:sp.Expr):
     return sp.solve(sp.GreaterThan(expression,0))
 
 def optimalEquation(utilityFunc : sp.Expr, strategy: sp.Symbol)->sp.Eq:
@@ -66,5 +59,5 @@ if __name__ == "__main__":
     st=sp.Symbol('st')
     c=sp.Symbol('c')
     utilityFunc=(st-c)**2
-    optSt=optimalStrategy(utilityFunc,st)
+    optSt=optimalEquation(utilityFunc, st)
     print(optSt)

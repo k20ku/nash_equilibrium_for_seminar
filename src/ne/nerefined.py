@@ -9,7 +9,7 @@ class Quantity:
     qunatity_lambda: Callable[[sp.Expr, sp.Expr], sp.Expr]
 
     def toExpr(self, price0: sp.Expr, price1: sp.Expr) -> sp.Expr:
-        return self.Qa(price0, price1)
+        return self.qunatity_lambda(price0, price1)
 
 if __name__ == "__main__":
     P1, P2, cost = sp.symbols('P1 P2 c')

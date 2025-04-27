@@ -1,6 +1,6 @@
 import pytest
 import sympy as sp
-from game import optimalEquation, equilibriate, safeSolve, dictToTuple
+from src.nperson.game import optimalEquation, equilibriate, safeSolve, dictToTuple
 """
 以下をテストしたい
 if __name__ == "__main__":

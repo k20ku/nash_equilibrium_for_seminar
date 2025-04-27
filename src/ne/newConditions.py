@@ -1,7 +1,8 @@
 from __future__ import annotations
 import sympy as sp
-import NE as ne
-class Conditions:
+import ne.salesStrategy as st
+
+class NewConditions:
     table={
         '3.1':[lambda p1,p2:(-p1+p2+1)/2,'off','off'],
         '3.2':[lambda p1,p2:(1-((p1-p2+2)**2)/8),'off','off'],
@@ -19,18 +20,4 @@ class Conditions:
         '3.14':[lambda p1,p2:(-4*p1+4*p2+5)/8, 'hy','on'],
         '3.15':[lambda p1,p2:(-p1+p2+1)/2,'hy','hy']
     }
-    def __init__(self, condition :str):
-        self.condition = condition
-    
-    # static コンストラクタ
-    def of(cls,condition) -> Conditions:
-        return cls(condition)
-        
-    @staticmethod
-    def search(cls, condition: str) -> dict[sp.Base, ]:
-        return cls.table[condition]
-    
-    @staticmethod
-    def toMarketData(cls,condition)-> ne.MarketData:
-        cond=cls.search(condition)
-        return ne.MarketData(cond[0],cond[1],cond[2])
+
